@@ -86,6 +86,7 @@
 #include "ipfix.h"
 #include "vwr.h"
 #include "camins.h"
+#include "dnstap.h"
 #include "pcap-encap.h"
 
 /* The open_file_* routines should return:
@@ -174,7 +175,8 @@ static wtap_open_routine_t open_routines_base[] = {
 	hcidump_open,
 	commview_open,
 	nstrace_open,
-	camins_open
+	camins_open,
+	dnstap_open
 };
 
 #define	N_FILE_TYPES	(sizeof open_routines_base / sizeof open_routines_base[0])
@@ -821,6 +823,11 @@ static const struct file_type_info dump_open_table_base[] = {
 
 	/* WTAP_FILE_CAMINS */
 	{ "CAM Inspector file", "camins", "camins", NULL,
+	  FALSE, FALSE, 0,
+	  NULL, NULL },
+
+	/* WTAP_FILE_DNSTAP */
+	{ "dnstap file", "dnstap", "dnstap", "dt",
 	  FALSE, FALSE, 0,
 	  NULL, NULL }
 };
