@@ -55,6 +55,9 @@ dnstap_read(wtap *wth, int *err, gchar **err_info, gint64 *data_offset)
 		bytes_read = file_read(&len, sizeof(len), wth->fh);
 		if (bytes_read != sizeof(len)) {
 			//g_warning("%s: couldn't read 4 bytes", __func__);
+			*err = file_error(wth->fh, err_info);
+			if (*err == 0 && bytes_read != 0)
+				*err = WTAP_ERR_SHORT_READ;
 			return FALSE;
 		}
 		len = GUINT32_FROM_LE(len);
@@ -99,6 +102,9 @@ dnstap_seek_read(wtap *wth, gint64 seek_off, struct wtap_pkthdr *phdr,
 	bytes_read = file_read(&len, sizeof(len), wth->random_fh);
 	if (bytes_read != sizeof(len)) {
 		//g_warning("%s: couldn't read 4 bytes", __func__);
+		*err = file_error(wth->random_fh, err_info);
+		if (*err == 0 && bytes_read != 0)
+			*err = WTAP_ERR_SHORT_READ;
 		return FALSE;
 	}
 	len = GUINT32_FROM_LE(len);
