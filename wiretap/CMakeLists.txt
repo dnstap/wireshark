@@ -38,6 +38,7 @@ set(WIRETAP_FILES
 	daintree-sna.c
 	dbs-etherwatch.c
 	dct3trace.c
+	dnstap.c
 	erf.c
 	eyesdn.c
 	file_access.c

@@ -44,6 +44,7 @@ NONGENERATED_C_FILES = \
 	daintree-sna.c		\
 	dbs-etherwatch.c	\
 	dct3trace.c		\
+	dnstap.c		\
 	erf.c			\
 	eyesdn.c		\
 	file_access.c		\
@@ -99,6 +100,7 @@ NONGENERATED_HEADER_FILES = \
 	daintree-sna.h		\
 	dbs-etherwatch.h	\
 	dct3trace.h		\
+	dnstap.h		\
 	erf.h			\
 	eyesdn.h		\
 	file_wrappers.h		\
